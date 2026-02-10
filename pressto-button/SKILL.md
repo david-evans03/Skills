@@ -1,6 +1,6 @@
 ---
 name: pressto-button
-description: Tells you how to use the pressto button in apps
+description: Tells you how to use the pressto button in react-native/expo apps
 ---
 
 Usage
