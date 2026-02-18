@@ -3,7 +3,30 @@ name: pressto-button
 description: Tells you how to use the pressto button in react-native/expo apps
 ---
 
-Usage
+# Setup
+
+Add `PressablesConfig` with haptics to your root layout:
+
+```tsx
+import { PressablesConfig } from "pressto";
+import * as Haptics from "expo-haptics";
+
+export default function RootLayout() {
+  return (
+    <PressablesConfig
+      globalHandlers={{
+        onPressIn: () => Haptics.selectionAsync(),
+      }}
+    >
+      <Stack>
+        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+      </Stack>
+    </PressablesConfig>
+  );
+}
+```
+
+# Usage
 
 ```tsx
 import { PressableScale, PressableOpacity } from "pressto";
@@ -21,11 +44,6 @@ import { PressableScale, PressableOpacity } from "pressto";
 
 Supports standard Pressable props.
 
-# pressto-button
+## Notes
 
-For tap targets needing 60fps visual feedback without JS thread blocking.
-
-Instructions
-
-1. Import PressableScale (physical feedback) or PressableOpacity (subtle fade)
-2. Wrap content and add onPress handler
+Do not add extra animations beyond what Pressto provides. Custom animations can cause text to appear blurry when pressing. Use only the built-in scale/opacity effects.
